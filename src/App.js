@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from "./Component/Header";
+import Home from "./Component/Home";
+import About from "./Component/About";
+
+import BarChartView from "./Component/Charts/Barchart";
+import PieChartView from "./Component/Charts/PieChart";
+import LineChartView from "./Component/Charts/LineChart";
+import DoughnutChartView from "./Component/Charts/DonutChart";
+import PolarAreaChartView from "./Component/Charts/PolarAreaChart";
+
+export default function App() {
+    return (
+        <Router>
+            <div>
+            <Header/>
+
+                {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+                <Switch>
+                    <Route path="/polarchart">
+                        <PolarAreaChartView />
+                    </Route>
+                    <Route path="/barchart">
+                        <BarChartView />
+                    </Route>
+                    <Route path="/piechart">
+                        <PieChartView />
+                    </Route>
+                    <Route path="/linechart">
+                        <LineChartView />
+                    </Route>
+                    <Route path="/donutchart">
+                        <DoughnutChartView />
+                    </Route>
+                    <Route path="/about">
+                        <About />
+                    </Route>
+                    <Route path="/">
+                        <Home />
+                    </Route>
+
+                </Switch>
+            </div>
+        </Router>
+    );
 }
 
-export default App;
